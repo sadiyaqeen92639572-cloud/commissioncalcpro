@@ -43,6 +43,8 @@ function layout({ title, description, canonicalPath, h1, subtitle, jsonLd, bodyH
 <meta property="og:url" content="${canonical}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="google-site-verification" content="${GSC_TAG}" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
 <link rel="stylesheet" href="/assets/styles.css">
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>

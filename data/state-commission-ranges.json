@@ -1,0 +1,57 @@
+{
+  "last_updated": "2026-08-14",
+  "note": "No single authoritative average commission exists per state — NAR does not publish one. Every number below traces to a referral-company survey. Referral companies are commercially motivated to report commissions as high as plausible (their pitch is 'we found you a cheaper agent'), so figures are shown as ranges across sources, never as one presented figure.",
+  "national_sources": [
+    { "name": "Clever Real Estate", "survey_date": "2026-02", "sample_size": 533, "sample_note": "partner agents", "avg_pct": 5.70, "range_low_pct": 4.50, "range_low_state": "District of Columbia", "range_high_pct": 6.20, "range_high_state": "Michigan" },
+    { "name": "FastExpert", "survey_date": "2025-01", "sample_size": 580, "sample_note": "agents", "avg_pct": 5.57 }
+  ],
+  "states": {
+    "california": {
+      "name": "California",
+      "sources": [
+        { "name": "RealEstateWitch", "survey_date": "2026", "avg_pct": 5.47, "listing_agent_pct": 2.73, "buyer_agent_pct": 2.74, "sample_size": null }
+      ],
+      "range_low_pct": 4.50,
+      "range_high_pct": 6.20
+    },
+    "texas": {
+      "name": "Texas",
+      "sources": [
+        { "name": "RealEstateWitch", "survey_date": "2026", "avg_pct": 5.88, "listing_agent_pct": 2.93, "buyer_agent_pct": 2.95, "sample_size": null }
+      ],
+      "range_low_pct": 4.50,
+      "range_high_pct": 6.20
+    },
+    "florida": {
+      "name": "Florida",
+      "sources": [
+        { "name": "RealEstateWitch", "survey_date": "2026", "avg_pct": 5.60, "listing_agent_pct": 2.80, "buyer_agent_pct": 2.80, "sample_size": null }
+      ],
+      "range_low_pct": 4.50,
+      "range_high_pct": 6.20
+    },
+    "new-york": {
+      "name": "New York",
+      "sources": [],
+      "range_low_pct": 4.50,
+      "range_high_pct": 6.20,
+      "note": "No state-specific survey figure sourced yet — shown at the national range only. Do not publish a state-specific number here until a real source is cited."
+    },
+    "michigan": {
+      "name": "Michigan",
+      "sources": [
+        { "name": "Clever Real Estate", "survey_date": "2026-02", "avg_pct": 6.20, "sample_size": 533, "sample_note": "national high-end state in Clever's survey" }
+      ],
+      "range_low_pct": 4.50,
+      "range_high_pct": 6.20
+    },
+    "district-of-columbia": {
+      "name": "District of Columbia",
+      "sources": [
+        { "name": "Clever Real Estate", "survey_date": "2026-02", "avg_pct": 4.50, "sample_size": 533, "sample_note": "national low-end jurisdiction in Clever's survey" }
+      ],
+      "range_low_pct": 4.50,
+      "range_high_pct": 6.20
+    }
+  }
+}

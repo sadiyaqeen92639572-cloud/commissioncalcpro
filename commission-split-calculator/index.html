@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real Estate Commission Split Calculator — Agent vs Brokerage</title>
+<meta name="description" content="Calculate how much of the commission goes to the agent vs the brokerage under any split percentage.">
+<link rel="canonical" href="https://commissioncalcpro.com/commission-split-calculator/">
+<meta property="og:title" content="Real Estate Commission Split Calculator — Agent vs Brokerage">
+<meta property="og:description" content="Calculate how much of the commission goes to the agent vs the brokerage under any split percentage.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://commissioncalcpro.com/commission-split-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Commission Split Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://commissioncalcpro.com/"},{"@type":"ListItem","position":2,"name":"Commission Split Calculator","item":"https://commissioncalcpro.com/commission-split-calculator/"}]},{"@type":"Organization","name":"Gesmine-Invest Limited","url":"https://commissioncalcpro.com"}]}</script>
+</head>
+<body>
+<header>
+<a href="/">CommissionCalcPro</a>
+<h1>Commission Split Calculator</h1>
+<p>Agent take-home vs brokerage cut, at any split.</p>
+</header>
+<nav class="crumbs"><a href="/">Home</a> / Commission Split Calculator</nav>
+<main>
+
+<form id="calc-form">
+  <label>Total commission ($) <input type="number" id="commissionAmount" value="24750" min="0" step="100"></label>
+  <label>Agent's split (%) <input type="number" id="agentSplitPct" value="70" min="0" max="100" step="1"></label>
+  <button type="submit" class="submit-btn">Calculate split</button>
+</form>
+<div id="results-block">
+  <div class="result-row"><span>Agent take-home</span><span id="r-agent">$0</span></div>
+  <div class="result-row"><span>Brokerage keeps</span><span id="r-broker">$0</span></div>
+</div>
+<section>
+<h2>Typical splits</h2>
+<p>A common split is 70/30 (agent/brokerage), but traditional brokerages often keep 30-50%, leaving the agent 50-70%. Splits vary by brokerage model — 100%-commission brokerages charge flat desk fees instead.</p>
+</section>
+<script>
+document.getElementById('calc-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const r = calcSplit({
+    commissionAmount: document.getElementById('commissionAmount').value,
+    agentSplitPct: document.getElementById('agentSplitPct').value
+  });
+  document.getElementById('r-agent').textContent = fmtUSD(r.agentTakeHome);
+  document.getElementById('r-broker').textContent = fmtUSD(r.brokerageKeeps);
+  document.getElementById('results-block').classList.add('visible');
+});
+</script>
+</main>
+<footer>
+<a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · © 2026 Gesmine-Invest Limited
+</footer>
+<script src="/assets/calc-engine.js"></script>
+</body>
+</html>

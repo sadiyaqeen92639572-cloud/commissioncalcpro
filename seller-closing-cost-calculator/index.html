@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seller Closing Cost Calculator — Commission Plus Everything Else</title>
+<meta name="description" content="Estimate total seller closing costs including commission, title fees, and transfer taxes.">
+<link rel="canonical" href="https://commissioncalcpro.com/seller-closing-cost-calculator/">
+<meta property="og:title" content="Seller Closing Cost Calculator — Commission Plus Everything Else">
+<meta property="og:description" content="Estimate total seller closing costs including commission, title fees, and transfer taxes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://commissioncalcpro.com/seller-closing-cost-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Seller Closing Cost Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://commissioncalcpro.com/"},{"@type":"ListItem","position":2,"name":"Seller Closing Cost Calculator","item":"https://commissioncalcpro.com/seller-closing-cost-calculator/"}]},{"@type":"Organization","name":"Gesmine-Invest Limited","url":"https://commissioncalcpro.com"}]}</script>
+</head>
+<body>
+<header>
+<a href="/">CommissionCalcPro</a>
+<h1>Seller Closing Cost Calculator</h1>
+<p>Commission is the biggest line item — see the full picture.</p>
+</header>
+<nav class="crumbs"><a href="/">Home</a> / Seller Closing Cost Calculator</nav>
+<main>
+
+<form id="calc-form">
+  <label>Sale price ($) <input type="number" id="salePrice" value="450000" min="0" step="1000"></label>
+  <label>Total commission ($) <input type="number" id="totalCommission" value="24750" min="0" step="100"></label>
+  <label>Other closing costs (%) <input type="number" id="otherPct" value="1.5" min="0" max="10" step="0.1"></label>
+  <button type="submit" class="submit-btn">Calculate closing costs</button>
+</form>
+<div id="results-block">
+  <div class="result-amount" id="r-total">$0</div>
+  <div class="result-row"><span>Other closing costs</span><span id="r-other">$0</span></div>
+  <div class="result-row"><span>As % of sale price</span><span id="r-pct">0%</span></div>
+</div>
+<section>
+<h2>What's typically included</h2>
+<p>Seller closing costs usually include commission (the biggest line item, see the <a href="/">commission calculator</a>) plus title fees, transfer taxes, prorated property taxes, and any negotiated buyer credits. Sellers commonly pay 6-10% of sale price total including commission.</p>
+</section>
+<script>
+document.getElementById('calc-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const r = calcSellerClosingCosts({
+    salePrice: document.getElementById('salePrice').value,
+    totalCommission: document.getElementById('totalCommission').value,
+    otherClosingCostsPct: document.getElementById('otherPct').value
+  });
+  document.getElementById('r-total').textContent = fmtUSD(r.totalClosingCosts);
+  document.getElementById('r-other').textContent = fmtUSD(r.otherClosingCosts);
+  document.getElementById('r-pct').textContent = fmtPct(r.totalClosingCostsPct);
+  document.getElementById('results-block').classList.add('visible');
+});
+</script>
+</main>
+<footer>
+<a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · © 2026 Gesmine-Invest Limited
+</footer>
+<script src="/assets/calc-engine.js"></script>
+</body>
+</html>

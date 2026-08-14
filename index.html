@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real Estate Commission Calculator — Includes the 2024 NAR Settlement Rules</title>
+<meta name="description" content="Free real estate commission calculator that accounts for the 2024 NAR settlement — toggle whether the seller covers the buyer's agent fee. See your total, split, and net proceeds instantly.">
+<meta name="keywords" content="real estate commission calculator, realtor fee calculator, commission split calculator, buyer agent commission, NAR settlement calculator">
+<link rel="canonical" href="https://commissioncalcpro.com/">
+<meta property="og:title" content="Real Estate Commission Calculator — 2024 NAR Settlement Rules Included">
+<meta property="og:description" content="Most commission calculators still assume the old rules. This one accounts for the Aug 2024 NAR settlement — toggle whether the seller covers the buyer's agent.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://commissioncalcpro.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Real Estate Commission Calculator",
+      "description": "Calculates real estate commission, agent/broker split, and net seller proceeds, accounting for the 2024 NAR settlement rules on buyer-agent compensation.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do sellers still have to pay the buyer's agent commission?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, not automatically. Since the NAR settlement took effect on August 17, 2024, buyer-agent compensation was removed from MLS listings and is now negotiated separately between the buyer and their agent. Roughly 35% of sellers still choose to cover some or all of it as a negotiating concession, but it is optional, not standard." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the average real estate commission rate?",
+          "acceptedAnswer": { "@type": "Answer", "text": "There is no single official average — NAR doesn't publish one. Referral-company surveys report different figures: Clever Real Estate's Feb 2026 survey (n=533 agents) found 5.70% national average, ranging from 4.50% in DC to 6.20% in Michigan. FastExpert's early-2025 survey (n=580 agents) found 5.57%. These surveys are run by companies with a commercial interest in commissions looking high, so treat any single number with that in mind." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is real estate commission split between agent and broker?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It varies by brokerage. A common split is 70/30 — 70% of the commission to the agent, 30% to the brokerage — but traditional brokerages often keep 30-50%, leaving the agent 50-70%. Use the commission split calculator to model your specific split." }
+        },
+        {
+          "@type": "Question",
+          "name": "What changed with the 2024 NAR settlement?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Effective August 17, 2024, buyer-agent compensation offers were removed from MLS listings and data feeds entirely, and sellers are no longer automatically responsible for paying the buyer's agent on top of their own. Buyer-agent agreements are now required before touring homes, and that fee is negotiated directly between buyer and agent." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does it cost to sell a house in commission?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It depends entirely on your listing agreement and whether you cover any buyer-agent fee. A seller paying only their listing agent might pay 2.5-3% of the sale price; a seller covering both agents under the traditional model might pay 5-6%. Enter your numbers in the calculator above to see your exact figure." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I negotiate real estate commission?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Commission rates are always negotiable and were never fixed by law — the 2024 NAR settlement made this more explicit by removing the standard practice of pre-set buyer-agent compensation from MLS listings." }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://commissioncalcpro.com/" }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "Gesmine-Invest Limited",
+      "url": "https://commissioncalcpro.com/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+<a href="/">CommissionCalcPro</a>
+<h1>Real Estate Commission Calculator</h1>
+<p>Includes the 2024 NAR settlement rules — most calculators don't.</p>
+</header>
+<div class="disclaimer-banner">Estimates only, not a substitute for your actual listing agreement or a licensed professional's advice. Commission rates are always negotiable.</div>
+
+<main>
+<form id="calc-form">
+  <label>Sale price ($)
+    <input type="number" id="salePrice" value="450000" min="0" step="1000">
+  </label>
+  <label>Listing agent fee (%)
+    <input type="number" id="listingAgentPct" value="2.75" min="0" max="10" step="0.05">
+  </label>
+  <label>Does the seller cover the buyer's agent fee?
+    <div class="toggle-group" id="coverageToggle">
+      <button type="button" data-val="yes" class="active">Yes (full)</button>
+      <button type="button" data-val="no">No</button>
+      <button type="button" data-val="concession">Concession</button>
+    </div>
+  </label>
+  <label>Buyer's agent fee, if covered (%)
+    <input type="number" id="buyerAgentPct" value="2.75" min="0" max="10" step="0.05">
+  </label>
+  <label class="concession-input" id="concessionRow">Concession amount (%)
+    <input type="number" id="concessionPct" value="1.5" min="0" max="10" step="0.05">
+  </label>
+  <button type="submit" class="submit-btn">Calculate commission</button>
+</form>
+
+<div id="results-block">
+  <div class="result-amount" id="r-total">$0</div>
+  <div class="result-row"><span>Listing agent fee</span><span id="r-listing">$0</span></div>
+  <div class="result-row"><span>Buyer's agent fee (seller-paid)</span><span id="r-buyer">$0</span></div>
+  <div class="result-row"><span>Effective commission rate</span><span id="r-pct">0%</span></div>
+  <p id="r-note" class="privacy-note"></p>
+  <a href="#leadgen" class="cta-leadgen">Get a free quote from a local agent<small>No obligation. We don't sell your info to third parties without your consent.</small></a>
+</div>
+
+<section id="leadgen">
+<h2>Want a second opinion from a local agent?</h2>
+<p>This calculator gives you an estimate. If you want an actual agent to quote your specific property, share a few details and we'll pass them to a local agent — no cost, no obligation.</p>
+<form id="lead-form">
+  <label>Name <input type="text" name="name" required></label>
+  <label>Email <input type="email" name="email" required></label>
+  <label>Property ZIP code <input type="text" name="zip" required></label>
+  <label>Estimated sale price <input type="text" name="price"></label>
+  <button type="submit" class="submit-btn">Request a quote</button>
+</form>
+<p class="privacy-note">By submitting, you agree to be contacted about your property. See our <a href="/privacy/">privacy policy</a>.</p>
+</section>
+
+<section>
+<h2>Other tools</h2>
+<ul class="tool-links">
+  <li><a href="/commission-split-calculator/">Commission split calculator</a></li>
+  <li><a href="/net-proceeds-calculator/">Net proceeds calculator</a></li>
+  <li><a href="/seller-closing-cost-calculator/">Seller closing cost calculator</a></li>
+  <li><a href="/realtor-fees-by-state/">Realtor fees by state</a></li>
+  <li><a href="/buyer-agent-commission/">Who pays the buyer's agent?</a></li>
+  <li><a href="/nar-settlement-explained/">The 2024 NAR settlement, explained</a></li>
+</ul>
+</section>
+
+<section class="formula-section">
+<h2>How this calculator works</h2>
+<p class="source-line">Deterministic math — no AI, no estimation model. Formulas below.</p>
+<div class="formula-code">
+listing_agent_fee = sale_price × listing_agent_pct<br>
+buyer_agent_fee_paid_by_seller = <br>
+&nbsp;&nbsp;IF coverage = "yes" → sale_price × buyer_agent_pct<br>
+&nbsp;&nbsp;IF coverage = "no" → 0<br>
+&nbsp;&nbsp;IF coverage = "concession" → sale_price × concession_pct<br>
+total_seller_paid = listing_agent_fee + buyer_agent_fee_paid_by_seller
+</div>
+<p class="formula-footnote">The buyer-agent-coverage toggle reflects the Aug 17, 2024 NAR settlement, which removed buyer-agent compensation from MLS listings and made it a matter of separate negotiation. See <a href="/nar-settlement-explained/">what changed</a>.</p>
+</section>
+
+<section>
+<h2>FAQ</h2>
+<h3>Do sellers still have to pay the buyer's agent commission?</h3>
+<p>No, not automatically. Since the NAR settlement took effect on August 17, 2024, buyer-agent compensation was removed from MLS listings and is now negotiated separately between the buyer and their agent. Roughly 35% of sellers still choose to cover some or all of it as a negotiating concession, but it is optional, not standard.</p>
+<h3>What is the average real estate commission rate?</h3>
+<p>There is no single official average — NAR doesn't publish one. Clever Real Estate's Feb 2026 survey (n=533 agents) found 5.70% national average, ranging from 4.50% in DC to 6.20% in Michigan. FastExpert's early-2025 survey (n=580 agents) found 5.57%. Treat any single number with that in mind — see the full <a href="/realtor-fees-by-state/">state-by-state ranges</a>.</p>
+<h3>How is commission split between agent and broker?</h3>
+<p>It varies by brokerage — a common split is 70/30 in the agent's favor, but traditional brokerages often keep 30-50%. Use the <a href="/commission-split-calculator/">split calculator</a> to model your specific split.</p>
+</section>
+</main>
+
+<footer>
+<a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · © 2026 Gesmine-Invest Limited
+</footer>
+
+<script src="/assets/calc-engine.js"></script>
+<script>
+let coverage = 'yes';
+const toggleBtns = document.querySelectorAll('#coverageToggle button');
+const concessionRow = document.getElementById('concessionRow');
+toggleBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    toggleBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    coverage = btn.dataset.val;
+    concessionRow.classList.toggle('visible', coverage === 'concession');
+  });
+});
+
+document.getElementById('calc-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const salePrice = document.getElementById('salePrice').value;
+  const listingAgentPct = document.getElementById('listingAgentPct').value;
+  const buyerAgentPct = document.getElementById('buyerAgentPct').value;
+  const concessionPct = document.getElementById('concessionPct').value;
+
+  const r = calcCommission({ salePrice, listingAgentPct, buyerAgentCoverage: coverage, buyerAgentPct, concessionPct });
+
+  document.getElementById('r-total').textContent = fmtUSD(r.totalSellerPaid);
+  document.getElementById('r-listing').textContent = fmtUSD(r.listingAgentFee);
+  document.getElementById('r-buyer').textContent = fmtUSD(r.buyerAgentFeePaidBySeller);
+  document.getElementById('r-pct').textContent = fmtPct(r.effectivePct);
+  document.getElementById('r-note').textContent = r.coverageNote;
+  document.getElementById('results-block').classList.add('visible');
+});
+
+document.getElementById('lead-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  alert('Thanks — this form is a placeholder. Wire it to a real submission endpoint (Web3Forms/Formspree/etc) before launch.');
+});
+</script>
+</body>
+</html>

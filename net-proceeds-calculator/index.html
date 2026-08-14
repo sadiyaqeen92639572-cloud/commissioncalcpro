@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Net Proceeds Calculator — What You Actually Walk Away With</title>
+<meta name="description" content="Estimate your net proceeds after mortgage payoff, commission, and closing costs when selling your home.">
+<link rel="canonical" href="https://commissioncalcpro.com/net-proceeds-calculator/">
+<meta property="og:title" content="Net Proceeds Calculator — What You Actually Walk Away With">
+<meta property="og:description" content="Estimate your net proceeds after mortgage payoff, commission, and closing costs when selling your home.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://commissioncalcpro.com/net-proceeds-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Net Proceeds Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://commissioncalcpro.com/"},{"@type":"ListItem","position":2,"name":"Net Proceeds Calculator","item":"https://commissioncalcpro.com/net-proceeds-calculator/"}]},{"@type":"Organization","name":"Gesmine-Invest Limited","url":"https://commissioncalcpro.com"}]}</script>
+</head>
+<body>
+<header>
+<a href="/">CommissionCalcPro</a>
+<h1>Net Proceeds Calculator</h1>
+<p>Sale price minus mortgage, commission, and closing costs.</p>
+</header>
+<nav class="crumbs"><a href="/">Home</a> / Net Proceeds Calculator</nav>
+<main>
+
+<form id="calc-form">
+  <label>Sale price ($) <input type="number" id="salePrice" value="450000" min="0" step="1000"></label>
+  <label>Remaining mortgage payoff ($) <input type="number" id="mortgagePayoff" value="200000" min="0" step="1000"></label>
+  <label>Total commission ($) <input type="number" id="totalCommission" value="24750" min="0" step="100"></label>
+  <label>Other closing costs (%) <input type="number" id="otherPct" value="1.5" min="0" max="10" step="0.1"></label>
+  <button type="submit" class="submit-btn">Calculate net proceeds</button>
+</form>
+<div id="results-block">
+  <div class="result-amount" id="r-net">$0</div>
+  <div class="result-row"><span>Other closing costs</span><span id="r-other">$0</span></div>
+  <p class="privacy-note">This is an estimate. Not a Comparative Market Analysis or a substitute for a title company's settlement statement.</p>
+</div>
+<section>
+<h2>How this is calculated</h2>
+<p class="privacy-note">net_proceeds = sale_price − mortgage_payoff − total_commission − (sale_price × other_closing_costs_pct)</p>
+<p>Get your commission number from the <a href="/">commission calculator</a> first — it accounts for whether you're covering the buyer's agent fee under the 2024 NAR settlement rules.</p>
+</section>
+<script>
+document.getElementById('calc-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const r = calcNetProceeds({
+    salePrice: document.getElementById('salePrice').value,
+    mortgagePayoff: document.getElementById('mortgagePayoff').value,
+    totalCommission: document.getElementById('totalCommission').value,
+    otherClosingCostsPct: document.getElementById('otherPct').value
+  });
+  document.getElementById('r-net').textContent = fmtUSD(r.netProceeds);
+  document.getElementById('r-other').textContent = fmtUSD(r.otherClosingCosts);
+  document.getElementById('results-block').classList.add('visible');
+});
+</script>
+</main>
+<footer>
+<a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · © 2026 Gesmine-Invest Limited
+</footer>
+<script src="/assets/calc-engine.js"></script>
+</body>
+</html>

@@ -16,6 +16,8 @@ header p { color: rgba(255,255,255,.9); }
 h2 { font-size: 1.4rem; }
 h3 { font-size: 1.1rem; }
 header .badge { color: rgba(255,255,255,.85); font-size: 1.7rem; }
+header .reviewed-badge { color: rgba(255,255,255,.75); font-size: .78rem; margin-top: 6px; text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+footer p:first-child { max-width: 640px; margin: 0 auto 8px; }
 .disclaimer-banner { background: #fef3c7; border-bottom: 1px solid #fde68a; padding: 12px 20px; font-size: .9rem; color: #78350f; }
 main { max-width: 780px; margin: 0 auto; padding: 24px 20px 60px; }
 nav.crumbs { max-width: 780px; margin: 0 auto; padding: 12px 20px 0; font-size: .85rem; color: var(--muted); }

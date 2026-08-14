@@ -2,8 +2,30 @@ const fs = require('fs');
 const path = require('path');
 
 const DOMAIN = 'https://commissioncalcpro.com';
-const ORG = { '@type': 'Organization', name: 'Gesmine-Invest Limited', url: DOMAIN };
+const LAST_REVIEWED = '2026-08-14';
+const GSC_TAG = 'Zy97BXFfloEJYL3fbclF9Rp-NLbyUuzG5FKGp2-DbgE';
+const ORG = {
+  '@type': 'Organization',
+  name: 'Gesmine-Invest Limited',
+  legalName: 'Gesmine-Invest Limited',
+  url: DOMAIN,
+  identifier: { '@type': 'PropertyValue', propertyID: 'UK Company Number', value: '14120136' },
+  address: { '@type': 'PostalAddress', streetAddress: 'Hardy House, 269 Poynders Gardens', addressLocality: 'London', postalCode: 'SW4 8PQ', addressCountry: 'GB' }
+};
 const stateData = require('./data/state-commission-ranges.json');
+
+function webApp(fields) {
+  return Object.assign({
+    '@type': 'WebApplication',
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    dateModified: LAST_REVIEWED,
+    author: ORG,
+    publisher: ORG,
+    version: `2026-08-v1`
+  }, fields);
+}
 
 function layout({ title, description, canonicalPath, h1, subtitle, jsonLd, bodyHtml }) {
   const canonical = `${DOMAIN}${canonicalPath}`;
@@ -20,6 +42,7 @@ function layout({ title, description, canonicalPath, h1, subtitle, jsonLd, bodyH
 <meta property="og:type" content="website">
 <meta property="og:url" content="${canonical}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="google-site-verification" content="${GSC_TAG}" />
 <link rel="stylesheet" href="/assets/styles.css">
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
@@ -28,13 +51,15 @@ function layout({ title, description, canonicalPath, h1, subtitle, jsonLd, bodyH
 <a href="/">CommissionCalcPro</a>
 <h1>${h1}</h1>
 <p>${subtitle}</p>
+<p class="reviewed-badge">Last reviewed ${LAST_REVIEWED}</p>
 </header>
 <nav class="crumbs"><a href="/">Home</a> / ${h1}</nav>
 <main>
 ${bodyHtml}
 </main>
 <footer>
-<a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · © 2026 Gesmine-Invest Limited
+<p>CommissionCalcPro is published by Gesmine-Invest Limited, registered UK company number 14120136, registered office at Hardy House, 269 Poynders Gardens, London, United Kingdom, SW4 8PQ.</p>
+<p><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/changelog/">Changelog</a> · &copy; 2026 CommissionCalcPro. Estimates only — not legal, tax, or financial advice.</p>
 </footer>
 <script src="/assets/calc-engine.js"></script>
 </body>
@@ -84,7 +109,7 @@ function write(dir, html) {
 ${faq.mainEntity.map(q => `<h3>${q.name}</h3><p>${q.acceptedAnswer.text}</p>`).join('\n')}
 </section>`;
   const jsonLd = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'Article', headline: 'The 2024 NAR Settlement, Explained', datePublished: '2026-08-14' },
+    { '@type': 'Article', headline: 'The 2024 NAR Settlement, Explained', datePublished: '2026-08-14', dateModified: LAST_REVIEWED, author: ORG, publisher: ORG },
     faq,
     { '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: DOMAIN + '/' },
@@ -137,7 +162,7 @@ document.getElementById('calc-form').addEventListener('submit', (e) => {
 });
 </script>`;
   const jsonLd = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'WebApplication', name: 'Net Proceeds Calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+    webApp({ name: 'Net Proceeds Calculator' }),
     { '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: DOMAIN + '/' },
       { '@type': 'ListItem', position: 2, name: 'Net Proceeds Calculator', item: DOMAIN + '/net-proceeds-calculator/' }
@@ -187,7 +212,7 @@ document.getElementById('calc-form').addEventListener('submit', (e) => {
 });
 </script>`;
   const jsonLd = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'WebApplication', name: 'Seller Closing Cost Calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+    webApp({ name: 'Seller Closing Cost Calculator' }),
     { '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: DOMAIN + '/' },
       { '@type': 'ListItem', position: 2, name: 'Seller Closing Cost Calculator', item: DOMAIN + '/seller-closing-cost-calculator/' }
@@ -233,7 +258,7 @@ document.getElementById('calc-form').addEventListener('submit', (e) => {
 });
 </script>`;
   const jsonLd = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'WebApplication', name: 'Commission Split Calculator', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+    webApp({ name: 'Commission Split Calculator' }),
     { '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: DOMAIN + '/' },
       { '@type': 'ListItem', position: 2, name: 'Commission Split Calculator', item: DOMAIN + '/commission-split-calculator/' }
@@ -335,7 +360,9 @@ ${faq.mainEntity.map(q => `<h3>${q.name}</h3><p>${q.acceptedAnswer.text}</p>`).j
   const body = `
 <section>
 <h2>About CommissionCalcPro</h2>
-<p>CommissionCalcPro is published by Gesmine-Invest Limited, a UK-registered company. This site provides free calculators for real estate commission, net proceeds, and closing costs, built to reflect the current rules following the August 2024 NAR settlement.</p>
+<p>CommissionCalcPro is published by Gesmine-Invest Limited, registered UK company number 14120136, registered office at Hardy House, 269 Poynders Gardens, London, United Kingdom, SW4 8PQ. This site provides free calculators for real estate commission, net proceeds, and closing costs, built to reflect the current rules following the August 2024 NAR settlement.</p>
+<h3>Sourcing methodology</h3>
+<p>We don't publish a single "average commission" figure. NAR does not release official per-state averages, so every number on this site traces to a named referral-company survey with its sample size and survey date shown — see <a href="/realtor-fees-by-state/">realtor fees by state</a> for the full sourced ranges. Site content last reviewed ${LAST_REVIEWED}.</p>
 <p>We are not a brokerage, not a licensed real estate agent, and not a party to any transaction. Calculators here provide estimates for informational purposes — always confirm numbers with your actual listing agreement and a licensed professional.</p>
 <h3>Affiliate disclosure</h3>
 <p>Some links on this site may be affiliate links, meaning we may earn a fee if you're referred to a partner service. This does not affect the numbers our calculators produce.</p>
@@ -366,6 +393,26 @@ ${faq.mainEntity.map(q => `<h3>${q.name}</h3><p>${q.acceptedAnswer.text}</p>`).j
     description: 'How CommissionCalcPro handles your data.',
     canonicalPath: '/privacy/',
     h1: 'Privacy Policy',
+    subtitle: '',
+    jsonLd, bodyHtml: body
+  }));
+}
+
+// ---- changelog ----
+{
+  const body = `
+<section>
+<h2>Changelog</h2>
+<ul>
+<li><strong>2026-08-14</strong> — Site launched: commission calculator with buyer-agent-coverage toggle (NAR settlement), net proceeds, closing cost, and split calculators; realtor fees by state hub with sourced ranges.</li>
+</ul>
+</section>`;
+  const jsonLd = { '@context': 'https://schema.org', '@graph': [ORG] };
+  write('changelog', layout({
+    title: 'Changelog — CommissionCalcPro',
+    description: 'What changed on CommissionCalcPro and when.',
+    canonicalPath: '/changelog/',
+    h1: 'Changelog',
     subtitle: '',
     jsonLd, bodyHtml: body
   }));

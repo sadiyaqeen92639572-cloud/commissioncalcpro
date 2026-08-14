@@ -12,6 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://commissioncalcpro.com/">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="google-site-verification" content="Zy97BXFfloEJYL3fbclF9Rp-NLbyUuzG5FKGp2-DbgE" />
 <link rel="stylesheet" href="/assets/styles.css">
 <script type="application/ld+json">
 {
@@ -23,7 +24,11 @@
       "description": "Calculates real estate commission, agent/broker split, and net seller proceeds, accounting for the 2024 NAR settlement rules on buyer-agent compensation.",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "dateModified": "2026-08-14",
+      "version": "2026-08-v1",
+      "author": { "@type": "Organization", "name": "Gesmine-Invest Limited", "legalName": "Gesmine-Invest Limited", "url": "https://commissioncalcpro.com", "identifier": { "@type": "PropertyValue", "propertyID": "UK Company Number", "value": "14120136" }, "address": { "@type": "PostalAddress", "streetAddress": "Hardy House, 269 Poynders Gardens", "addressLocality": "London", "postalCode": "SW4 8PQ", "addressCountry": "GB" } },
+      "publisher": { "@type": "Organization", "name": "Gesmine-Invest Limited", "legalName": "Gesmine-Invest Limited", "url": "https://commissioncalcpro.com", "identifier": { "@type": "PropertyValue", "propertyID": "UK Company Number", "value": "14120136" }, "address": { "@type": "PostalAddress", "streetAddress": "Hardy House, 269 Poynders Gardens", "addressLocality": "London", "postalCode": "SW4 8PQ", "addressCountry": "GB" } }
     },
     {
       "@type": "FAQPage",
@@ -69,7 +74,10 @@
     {
       "@type": "Organization",
       "name": "Gesmine-Invest Limited",
-      "url": "https://commissioncalcpro.com/"
+      "legalName": "Gesmine-Invest Limited",
+      "url": "https://commissioncalcpro.com/",
+      "identifier": { "@type": "PropertyValue", "propertyID": "UK Company Number", "value": "14120136" },
+      "address": { "@type": "PostalAddress", "streetAddress": "Hardy House, 269 Poynders Gardens", "addressLocality": "London", "postalCode": "SW4 8PQ", "addressCountry": "GB" }
     }
   ]
 }
@@ -80,8 +88,9 @@
 <a href="/">CommissionCalcPro</a>
 <h1>Real Estate Commission Calculator</h1>
 <p>Includes the 2024 NAR settlement rules — most calculators don't.</p>
+<p class="reviewed-badge">Last reviewed 2026-08-14</p>
 </header>
-<div class="disclaimer-banner">Estimates only, not a substitute for your actual listing agreement or a licensed professional's advice. Commission rates are always negotiable.</div>
+<div class="disclaimer-banner">Estimates only, based on the NAR settlement rules effective August 17, 2024 — not a substitute for your actual listing agreement or a licensed real estate professional's advice. Commission rates are always negotiable.</div>
 
 <main>
 <form id="calc-form">
@@ -167,7 +176,8 @@ total_seller_paid = listing_agent_fee + buyer_agent_fee_paid_by_seller
 </main>
 
 <footer>
-<a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · © 2026 Gesmine-Invest Limited
+<p>CommissionCalcPro is published by Gesmine-Invest Limited, registered UK company number 14120136, registered office at Hardy House, 269 Poynders Gardens, London, United Kingdom, SW4 8PQ.</p>
+<p><a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/changelog/">Changelog</a> · &copy; 2026 CommissionCalcPro. Estimates only — not legal, tax, or financial advice.</p>
 </footer>
 
 <script src="/assets/calc-engine.js"></script>

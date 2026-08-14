@@ -4,7 +4,7 @@ const DOMAIN = 'https://commissioncalcpro.com';
 const paths = [
   '/', '/nar-settlement-explained/', '/net-proceeds-calculator/',
   '/seller-closing-cost-calculator/', '/commission-split-calculator/',
-  '/realtor-fees-by-state/', '/buyer-agent-commission/', '/about/', '/privacy/'
+  '/realtor-fees-by-state/', '/buyer-agent-commission/', '/about/', '/privacy/', '/changelog/'
 ];
 
 const today = new Date().toISOString().slice(0, 10);

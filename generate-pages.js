@@ -340,7 +340,17 @@ ${faq.mainEntity.map(q => `<h3>${q.name}</h3><p>${q.acceptedAnswer.text}</p>`).j
 <p>These ranges show what surveys report — your actual rate is whatever you negotiate with your agent. Run your own numbers in the <a href="/">commission calculator</a>.</p>
 </section>`;
   const jsonLd = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'Dataset', name: 'Real Estate Commission Ranges by State', dateModified: stateData.last_updated },
+    { '@type': 'Dataset',
+      name: 'Real Estate Commission Ranges by State',
+      description: 'Real estate agent commission percentage ranges for all 50 US states plus national survey averages, sourced from cited industry surveys with sample size and date, updated periodically.',
+      dateModified: stateData.last_updated,
+      creator: ORG,
+      license: 'https://creativecommons.org/licenses/by/4.0/',
+      url: DOMAIN + '/realtor-fees-by-state/',
+      isAccessibleForFree: true,
+      keywords: ['real estate commission', 'realtor fees by state', 'agent commission rate'],
+      variableMeasured: 'Real estate agent commission percentage'
+    },
     { '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: DOMAIN + '/' },
       { '@type': 'ListItem', position: 2, name: 'Realtor Fees by State', item: DOMAIN + '/realtor-fees-by-state/' }
